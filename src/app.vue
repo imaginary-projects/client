@@ -1,17 +1,22 @@
 <template>
   <div>
-    <h1>{{ message }}</h1>
+    <mainpage></mainpage>
   </div>
 </template>
 
 <script>
+
+import mainpage from './views/mainPage'
+
 export default {
   data() {
     return {
-      file : '',
-      message: 'Hello world',
+
     };
   },
+  components:{
+      mainpage
+    },
   methods : {
     submit(){
       let formData = new FormData
