@@ -8895,11 +8895,24 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   data: function data() {
     return {
+      file: '',
       message: 'Hello world'
     };
+  },
+  methods: {
+    submit: function submit() {
+      var formData = new FormData();
+      formData.append('file', this.file);
+    },
+    fileHandler: function fileHandler() {
+      console.log('change on');
+      this.file = this.$$refs.file.files[0];
+    }
   }
 };
 exports.default = _default;
@@ -8915,7 +8928,7 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v(_vm._s(_vm.message))])
+  return _c("div", [_c("h1", [_vm._v(_vm._s(_vm.message))])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -8992,7 +9005,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49429" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54953" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
