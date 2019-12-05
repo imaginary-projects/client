@@ -1,14 +1,33 @@
 <template>
-  <h1>{{ message }}</h1>
+  <div>
+    <mainpage></mainpage>
+  </div>
 </template>
 
 <script>
+
+import mainpage from './views/mainPage'
+
 export default {
   data() {
     return {
-      message: 'Hello world',
+
     };
   },
+  components:{
+      mainpage
+    },
+  methods : {
+    submit(){
+      let formData = new FormData
+      formData.append('file',this.file)
+
+    },
+    fileHandler(){
+      console.log('change on')
+      this.file = this.$$refs.file.files[0]
+    }
+  }
 };
 </script>
 
