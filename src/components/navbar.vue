@@ -22,7 +22,9 @@
                 <b-button style="margin-right:10px;" size="md" class="my-2 my-sm-0" type="submit">login</b-button>
                 <b-button size="md" class="my-2 my-sm-0" type="submit">register</b-button>
                 <b-button style="margin-right:10px;" size="md" class="my-2 my-sm-0" type="submit">logout</b-button>
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i style="font-size:18px;margin-right:10px" class="fas fa-plus-square"></i>Post</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i style="font-size:18px;margin-right:10px" class="fas fa-plus-square">
+                post
+                </button>
                 </b-nav-form>
             </b-navbar-nav>
 
