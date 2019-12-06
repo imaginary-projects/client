@@ -17,7 +17,7 @@ export default {
     components : {
         navbar,
         bodyContent,
-        detailContent,
+        detailContent
     }
 
 }
