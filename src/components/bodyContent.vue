@@ -3,99 +3,61 @@
 
        
           <form style="width:99vw;margin-bottom:150px">
-          <div class="form-row" style="padding-left:20%;padding-right:15%;height:300px;display:flex;align-items:center;box-shadow: 27px 46px 57px -8px rgba(0,0,0,0.2);">
+          <div class="form-row" style="padding-left:34%;padding-right:15%;height:300px;display:flex;align-items:center;box-shadow: 27px 46px 57px -8px rgba(0,0,0,0.2);">
             <div class="col-md-2 mb-3">
               <label for="validationTooltip01">Min price</label>
-              <input type="text" class="form-control" id="validationTooltip01" placeholder="1000" required>
+              <input v-model="minPrice" type="text" class="form-control" id="validationTooltip01" placeholder="1000" required>
               <div class="valid-tooltip">
                 Looks good!
               </div>
             </div>
             <div class="col-md-2 mb-3">
               <label for="validationTooltip02">Max price</label>
-              <input type="text" class="form-control" id="validationTooltip02" placeholder="1.000.000" required>
+              <input v-model="maxPrice" type="text" class="form-control" id="validationTooltip02" placeholder="1.000.000" required>
               <div class="valid-tooltip">
                 Looks good!
               </div>
             </div>
               <div class="form-group col-md-3">
-              <label for="inputState">Sex</label>
-              <select id="inputState" class="form-control">
+              <label for="inputState">Gender</label>
+              <select v-model="sex" id="inputState" class="form-control">
                 <option selected>Choose...</option>
                 <option>Female</option>
                 <option>Male</option>
               </select>
             </div>
-            <div class="col-md-3 mb-3">
+            <!-- <div class="col-md-3 mb-3">
               <label for="validationTooltip01">Specific category</label>
               <input type="text" class="form-control" id="validationTooltip01" placeholder="Bulldog" required>
               <div class="valid-tooltip">
                 Looks good!
               </div>
-            </div>
+            </div> -->
 
-            <button style="height:40px; width:100px;margin-left:30px;" type="submit" class="btn btn-primary">Submit</button>
+            <button @click.prevent="showFilterred" style="height:40px; width:100px;margin-left:30px;" type="submit" class="btn btn-primary">Submit</button>
           </div>
 
           </form>
-
-
        
-
+         <div style="margin-bottom:100px">
+            <button type="button" class="btn btn-success" style="float:right; margin-left:5px;" @click="nextPage">Next</button>
+            <button type="button" class="btn btn-success" style="float:right;" @click="prevPage">Previous</button>
+          </div>
+    
         <div class="dogs" style="display:flex;flex-basis: 30%;width:80vw;flex-wrap: wrap;">
-            <div class="card" style="width: 30%;margin:20px">
-            <div class="images" style="height:300px;width:auto;background-image: url('https://www.rd.com/wp-content/uploads/2017/02/16-result-5-Which-Adorable-Puppy-Are-You-521697453-Bigandt_Photography-800x450.jpg'); background-size:cover">
+
+            <div v-for="(dog, i) in currents" :key="i" class="card" style="width: 30%;margin:20px">
+            <div class="images"
+
+            :style="`height:300px;width:auto;background-image:url('${dog.image_url}'); background-size:cover`">
             </div>
             <div class="card-body" style="padding:40px;">
-              <h4 class="card-title">{{nama}}</h4>
-              <p class="card-text">{{description}}</p>
-              <a href="#" class="btn btn-primary">Details</a>
-              <button type="submit" class="btn btn-primary"><i style="font-size:18px;margin-right:10px" class="fas fa-paw"></i>Favorite</button>
+              <h4 class="card-title">{{dog.name}}</h4>
+              <p class="card-text">{{dog.description.slice(0,50)}}</p>
+              <a href="#" @click.prevent=showDetail(dog) class="btn btn-primary">detail</a>
+              <button @click.prevent="deleteAnjing(dog._id)" type="submit" class="btn btn-warning"><i style="font-size:18px;margin-right:10px" class="fas fa-paw"></i>Delete</button>
             </div>
-          </div>
-
-
-          <div class="card" style="width: 30%;margin:20px">
-            <div class="images" style="height:300px;width:auto;background-image: url('https://www.rd.com/wp-content/uploads/2017/02/16-result-5-Which-Adorable-Puppy-Are-You-521697453-Bigandt_Photography-800x450.jpg'); background-size:cover">
-<!--             <img src="../../dist/bookmark.png" style="height:90px;position:absolute;top:-20px;left:360px" alt="">
- -->            </div>
-            <div class="card-body" style="padding:40px;">
-              <h4 class="card-title">Annice The Cute Dog</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">details</a>
-              <button type="submit" class="btn btn-primary"><i style="font-size:18px;margin-right:10px" class="fas fa-paw"></i>Favorite</button>
-            </div>
-          </div>
-
-          <div class="card" style="width: 30%;margin:20px">
-            <div class="images" style="height:300px;width:auto;background-image: url('https://www.rd.com/wp-content/uploads/2017/02/16-result-5-Which-Adorable-Puppy-Are-You-521697453-Bigandt_Photography-800x450.jpg'); background-size:cover">
-            <img src="../../dist/bookmark.png" style="height:90px;position:absolute;top:-20px;left:360px" alt="">
-            </div>
-            <div class="card-body" style="padding:40px;">
-              <h4 class="card-title">Annice The Cute Dog</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">details</a>
-              <button type="submit" class="btn btn-primary"><i style="font-size:18px;margin-right:10px" class="fas fa-paw"></i>Favorite</button>
-            </div>
-          </div>
-
-          <div class="card" style="width: 30%;margin:20px">
-            <div class="images" style="height:300px;width:auto;background-image: url('https://cdn.pixabay.com/photo/2016/11/16/00/19/golden-retriever-1827899_960_720.jpg'); background-size:cover">
-            
-            </div>
-            <div class="card-body" style="padding:40px;">
-              <h4 class="card-title">Annice The Cute Dog</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">details</a>
-              <button type="submit" class="btn btn-primary"><i style="font-size:18px;margin-right:10px" class="fas fa-paw"></i>Favorite</button>
-            </div>
-          </div>
-
-          
-
-          
-
-           
+          </div>     
 
         </div>
 
@@ -104,36 +66,151 @@
 
 <script>
 import axios from 'axios'
+import Swal from 'sweetalert2'
+
 export default {
    data() {
     return {
+      minPrice:'',
+      maxPrice:'',
+      sex:'',
       input : '',
       searchBtn : '',
-      dogList: []
+      dogList: [],
+      isDetail:true,
+      input : '',
+      pageNumber: 0,
+      size:6,
+      currents : [],
     }
   },
 
   methods : {
+    deleteAnjing(id){
+      Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.value) {
+            axios({
+                method:'delete',
+                url: `http://localhost:3000/anjing/${id}`,
+                headers : {
+                  token : localStorage.getItem('token')
+                }
+              })
+              .then(({data}) => {
+                console.log(data)
+                this.fetchData()
+                  Swal.fire(
+                      'Deleted!',
+                      'Delete success',
+                      'success'
+                  )
+              })
+              .catch(({response}) => {
+                  Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: 'You are not the owner of the dog!',
+                  })
+                
+                  console.log(response)
+              })
+
+            Swal.fire(
+              'Deleted!',
+              'Your dog removed from our page!',
+              'success'
+            )
+          }
+        })
+      console.log(id)
+      
+      
+    },
+    showFilterred(){
+      console.log('filter triggereddddd')
+      axios({
+        method:'post',
+        url: 'http://localhost:3000/anjing/filter',
+        data: {
+          minPrice : this.minPrice,
+          maxPrice : this.maxPrice,
+          sex : this.sex
+        }
+      })
+        .then(({data}) => {
+          console.log(data,'dataa from anjing')
+          console.log(this.pageNumber)
+          this.dogList = data
+          this.pageNumber = 0
+          this.currentAnjing()
+        })
+        .catch((err) => {
+          // console.log(err)
+        })
+    },
+    showDetail(dog){
+      this.$emit('show-detail',dog)
+      this.$emit('detail-page',true)
+      console.log('from show detail dog',dog)
+    },
     expand(){
         searchBtn.classList.toggle("close");
         input.classList.toggle("square");
+    },
+    nextPage(){
+       this.pageNumber++;
+       this.currentAnjing()
+    },
+    currentAnjing(){
+      // console.log('tajhdfnjkanflajsdbnfjlanfjlansdlf')
+      const start = this.pageNumber * this.size
+      const end = start + this.size;
+      console.log(this.dogList)
+      // console.log(this.dogList,'-------------------')
+      // console.log(this.dogList.slice(start, end))
+      this.currents = this.dogList.slice(start, end);
+
+    },
+    prevPage(){
+      this.pageNumber--;
+      this.currentAnjing()
     },
     fetchData(){
       axios({
         method:'get',
         url: 'http://localhost:3000/anjing'
       })
-        .then((data) => {
-          dogList = data
+        .then(({data}) => {
           console.log(data)
+          this.dogList = data
+          this.currentAnjing()
         })
         .catch((err) => {
           console.log(err)
         })
-    }
+    },
   },
+
+  props : ['newAnjing'],
+
   created(){
     this.fetchData()
+    
+  },
+
+  watch: {
+    newAnjing(value){
+      this.dogList.unshift(value)
+      this.currentAnjing()
+    }
   }
 
 
