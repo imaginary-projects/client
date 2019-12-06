@@ -67,7 +67,7 @@
             </div>
           </div>
 
-          <!-- <div class="card" style="width: 30%;margin:20px">
+          <div class="card" style="width: 30%;margin:20px">
             <div class="images" style="height:300px;width:auto;background-image: url('https://www.rd.com/wp-content/uploads/2017/02/16-result-5-Which-Adorable-Puppy-Are-You-521697453-Bigandt_Photography-800x450.jpg'); background-size:cover">
             <img src="../../dist/bookmark.png" style="height:90px;position:absolute;top:-20px;left:360px" alt="">
             </div>
@@ -89,7 +89,7 @@
               <a href="#" class="btn btn-primary">details</a>
               <button type="submit" class="btn btn-primary"><i style="font-size:18px;margin-right:10px" class="fas fa-paw"></i>Favorite</button>
             </div>
-          </div> -->
+          </div>
 
           
 
@@ -98,31 +98,6 @@
            
 
         </div>
-
-
-        <!-- <div class="card" style="width: 100%;">
-          <div class="images" style="height:300px;width:auto;background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRFeGl-Nrqsd-HHLUaUyBaAQnogvf3tB3-OdT84eVDHTvhETP6&s'); background-size:cover">
-          
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-
-        <div class="card" style="width: 100%;">
-          <div class="images" style="height:300px;width:auto;background-image: url('https://cdn.shopify.com/s/files/1/0812/3573/files/DogTraining_Website_Yellow_Dog.png?8767'); background-size:cover">
-          
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div> -->
-
-        
 
   </b-card-group>
 </template>

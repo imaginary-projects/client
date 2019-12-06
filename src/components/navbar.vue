@@ -16,15 +16,18 @@
 
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
-                <b-nav-form>
-                <b-form-input size="md" class="mr-sm-2" placeholder="email"></b-form-input>
-                <b-form-input size="md" class="mr-sm-2" placeholder="password"></b-form-input>
-                <b-button style="margin-right:10px;" size="md" class="my-2 my-sm-0" type="submit">login</b-button>
-                <b-button size="md" class="my-2 my-sm-0" type="submit">register</b-button>
-                <b-button style="margin-right:10px;" size="md" class="my-2 my-sm-0" type="submit">logout</b-button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i style="font-size:18px;margin-right:10px" class="fas fa-plus-square">
+                <b-nav-form @submit.prevent="login">
+                <b-form-input v-if="isLogin === false && isRegister === true" v-model="username" size="md" class="mr-sm-2" placeholder="username"></b-form-input>
+                <b-form-input v-if="isLogin === false" v-model="email" size="md" class="mr-sm-2" placeholder="email"></b-form-input>
+                <b-form-input v-if="isLogin === false" v-model="password" size="md" type="password" class="mr-sm-2" placeholder="password"></b-form-input>
+                <b-button v-if="isLogin == false && isRegister === false"  style="margin-right:10px;" size="md" class="my-2 my-sm-0" type="submit">login</b-button>
+                <b-button v-if="isLogin == false && isRegister === false" @click.prevent="registerPage" size="md" class="my-2 my-sm-0" type="submit">register</b-button>
+                <b-button v-if="isRegister == true && sLogin == false" size="md" @click.prevent="register" style="margin-right:10px;" class="my-2 my-sm-0" type="submit">submit</b-button>
+                <b-button  v-if="isLogin == false && isRegister === true" @click.prevent="back" size="md" class="my-2 my-sm-0" type="submit">back</b-button>
+                <button v-if="isLogin == true" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i style="font-size:18px;margin-right:10px" class="fas fa-plus-square">
                 post
                 </button>
+                <b-button v-if="isLogin == true" style="margin-left:10px;" size="md" class="my-2 my-sm-0" @click="logout">logout</b-button>
                 </b-nav-form>
             </b-navbar-nav>
 
@@ -36,67 +39,44 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content" style="width:1000px;padding:100px;border-radius:30px">
             <div>
-                    <b-form @submit.prevent="onSubmit" @reset="onReset" v-if="show">
-                    <b-form-group
-                        id="input-group-1"
-                        label="Email address:"
-                        label-for="input-1"
-                        description="We'll never share your email with anyone else."
-                    >
-                        <b-form-input
-                        id="input-1"
-                        v-model="form.email"
-                        type="email"
-                        required
-                        placeholder="Enter Name"
-                        ></b-form-input>
-                    </b-form-group>
+                    <b-form @submit.prevent="onSubmit" v-if="show">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Name</label>
+                        <input v-model="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name">
+                    </div>
 
-                    <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
-                        <b-form-input
-                        id="input-2"
-                        v-model="form.name"
-                        required
-                        placeholder="Enter Type"
-                        ></b-form-input>
-                    </b-form-group>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Description</label>
+                        <input v-model="description" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="description">
+                    </div>
 
-                    <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
-                        <b-form-input
-                        id="input-2"
-                        v-model="form.name"
-                        required
-                        placeholder="Enter Description"
-                        ></b-form-input>
-                    </b-form-group>
+                     <div class="form-group">
+                        <label for="exampleInputEmail1">Type</label>
+                        <input v-model="type" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="type">
+                    </div>
 
-                    <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
-                        <b-form-input
-                        id="input-2"
-                        v-model="form.name"
-                        required
-                        placeholder="Enter Price"
-                        ></b-form-input>
-                    </b-form-group>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Price</label>
+                        <input v-model="price" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price">
+                    </div>
 
-                    <b-form-group id="input-group-3" label="Gender:" label-for="input-3">
-                        <b-form-select
-                        id="input-3"
-                        v-model="form.food"
-                        :options="Gender"
-                        required
-                        ></b-form-select>
-                    </b-form-group>
-                        <div class="mt-3">Selected file: {{ file ? file.name : '' }}</div>
+                     <div class="form-group">
+                        <label for="exampleFormControlSelect1">Gender</label>
+                        <select v-model="gender" class="form-control" id="exampleFormControlSelect1">
+                        <option>Male</option>
+                        <option>Female</option>
+                        </select>
+                    </div>
+
                     <b-form-file
                         v-model="file"
                         :state="Boolean(file)"
                         placeholder="Choose a file or drop it here..."
                         drop-placeholder="Drop file here..."
                         ></b-form-file>
+                        <div class="mt-3">Selected file: {{ file ? file.name : '' }}</div>
 
-                    <b-form-group id="input-group-4">
-                    </b-form-group>
+    
                     <b-button type="submit" variant="primary">Submit</b-button>
                     </b-form>
                 </div>
@@ -108,35 +88,123 @@
 </template>
 
 <script>
+
+import axios from 'axios'
+// import Swal from 'sweetalert2'
+
 export default {
     data() {
       return {
-        form: {
-          email: '',
-          name: '',
-          Gender: null,
-          checked: [],
-          file: null,
-        },
-        Gender: [{ text: 'Select One', value: null }, 'male','female'],
-        show: true
+            username:'',
+            email:'',
+            password :'',
+            name: '',
+            description: '',
+            type: '',
+            gender: '',
+            price: '',
+            file:[],
+            show: true,
+            isLogin : true,
+            isRegister : false,
       }
     },
     methods: {
-      onSubmit(evt) {
-        evt.preventDefault()
-        alert(JSON.stringify(this.form))
+        registerPage(){
+            this.isRegister = true
+        },
+        back(){
+            this.isRegister = false
+        },
+        login(){
+            axios({
+                url : "http://localhost:3000/users/login",
+                method : 'post',
+                data : {
+                    email : this.email,
+                    password : this.password,
+                }
+            })
+            .then(({data}) => {
+                this.isLogin = true
+                localStorage.setItem('token', data.access_token)
+                console.log(data)
+            })
+            .catch(({response}) => {
+                // Swal.fire({
+                //     icon: 'error',
+                //     title: 'Oops...',
+                //     text: 'Something went wrong!',
+                //     footer: '<a href>Why do I have this issue?</a>'
+                // })
+             
+                console.log(response)
+            })
+        },
+        register(){
+            axios({
+                url : "http://localhost:3000/users/register",
+                method : 'post',
+                data : {
+                    username : this.username,
+                    email : this.email,
+                    password : this.password,
+                }
+            })
+            .then(({data}) => {
+                this.isLogin = true
+                localStorage.setItem('token', data.access_token)
+                console.log(data)
+            })
+            .catch(({response}) => {
+                // Swal.fire({
+                //     icon: 'error',
+                //     title: 'Oops...',
+                //     text: 'Something went wrong!',
+                //     footer: '<a href>Why do I have this issue?</a>'
+                // })
+                console.log(response)
+            })
+        },
+        logout(){
+            localStorage.removeItem('token')
+            this.isLogin = false
+        },
+        onSubmit() {
+            const fd = new FormData()
+            fd.append('file',this.file)
+            fd.append('name',this.name)
+            fd.append('description',this.description)
+            fd.append('gender',this.gender)
+            fd.append('price',this.price)
+            fd.append('type',this.type)
+            
+
+            axios({
+                url : "http://localhost:3000/anjing/create",
+                method : 'post',
+                data : fd,
+                headers : {
+                    token : localStorage.getItem('token')
+                }
+            })
+            .then(({data}) => {
+                $('#exampleModalCenter').modal('hide')
+                
+                console.log(data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        // alert(JSON.stringify(this.form))
       },
-      onReset(evt) {
-        evt.preventDefault()
-        this.form.email = ''
-        this.form.name = ''
-        this.form.food = null
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
-      }
+    },
+    created(){
+        if(localStorage.getItem('token')){
+            this.isLogin = true
+        }else{
+            this.isLogin = false
+        }
     }
   }
 </script>

@@ -50,6 +50,7 @@
 
 <script>
 export default {
+<<<<<<< HEAD
   data() {
     return {
         name: '',
@@ -65,6 +66,9 @@ export default {
   created(){
     this.generateUrl()
   }
+=======
+    
+>>>>>>> fitur-add
 }
 </script>
 
