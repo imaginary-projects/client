@@ -22,8 +22,8 @@
                 <b-form-input v-if="isLogin === false" v-model="password" size="md" type="password" class="mr-sm-2" placeholder="password"></b-form-input>
                 <b-button v-if="isLogin == false && isRegister === false"  style="margin-right:10px;" size="md" class="my-2 my-sm-0" type="submit">login</b-button>
                 <b-button v-if="isLogin == false && isRegister === false" @click.prevent="registerPage" size="md" class="my-2 my-sm-0" type="submit">register</b-button>
-                <b-button v-if="isRegister == true && sLogin == false" size="md" @click.prevent="register" style="margin-right:10px;" class="my-2 my-sm-0" type="submit">submit</b-button>
-                <b-button  v-if="isLogin == false && isRegister === true" @click.prevent="back" size="md" class="my-2 my-sm-0" type="submit">back</b-button>
+                <b-button v-if="isRegister == true && isLogin == false" size="md" @click.prevent="register" style="margin-right:10px;" class="my-2 my-sm-0" type="submit">submit</b-button>
+                <b-button  v-if="isRegister === true && isLogin == false" @click.prevent="back" size="md" class="my-2 my-sm-0" type="submit">back</b-button>
                 <button v-if="isLogin == true" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i style="font-size:18px;margin-right:10px" class="fas fa-plus-square">
                 post
                 </button>
@@ -53,6 +53,11 @@
                      <div class="form-group">
                         <label for="exampleInputEmail1">Type</label>
                         <input v-model="type" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="type">
+                    </div>
+
+                     <div class="form-group">
+                        <label for="exampleInputEmail1">Age</label>
+                        <input v-model="age" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="age">
                     </div>
 
                     <div class="form-group">
@@ -90,7 +95,7 @@
 <script>
 
 import axios from 'axios'
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 export default {
     data() {
@@ -101,12 +106,14 @@ export default {
             name: '',
             description: '',
             type: '',
+            age:'',
             gender: '',
             price: '',
             file:[],
             show: true,
             isLogin : true,
             isRegister : false,
+            anjings : []
       }
     },
     methods: {
@@ -128,15 +135,19 @@ export default {
             .then(({data}) => {
                 this.isLogin = true
                 localStorage.setItem('token', data.access_token)
-                console.log(data)
+                Swal.fire(
+                    'Good job!',
+                    'You clicked the button!',
+                    'success'
+                )
             })
             .catch(({response}) => {
-                // Swal.fire({
-                //     icon: 'error',
-                //     title: 'Oops...',
-                //     text: 'Something went wrong!',
-                //     footer: '<a href>Why do I have this issue?</a>'
-                // })
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: '<a href>Why do I have this issue?</a>'
+                })
              
                 console.log(response)
             })
@@ -155,20 +166,26 @@ export default {
                 this.isLogin = true
                 localStorage.setItem('token', data.access_token)
                 console.log(data)
+                Swal.fire(
+                    'Good job!',
+                    'You clicked the button!',
+                    'success'
+                )
             })
             .catch(({response}) => {
-                // Swal.fire({
-                //     icon: 'error',
-                //     title: 'Oops...',
-                //     text: 'Something went wrong!',
-                //     footer: '<a href>Why do I have this issue?</a>'
-                // })
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: '<a href>Why do I have this issue?</a>'
+                })
                 console.log(response)
             })
         },
         logout(){
             localStorage.removeItem('token')
             this.isLogin = false
+
         },
         onSubmit() {
             const fd = new FormData()
@@ -178,8 +195,8 @@ export default {
             fd.append('gender',this.gender)
             fd.append('price',this.price)
             fd.append('type',this.type)
+            fd.append('age',this.age)
             
-
             axios({
                 url : "http://localhost:3000/anjing/create",
                 method : 'post',
@@ -190,7 +207,12 @@ export default {
             })
             .then(({data}) => {
                 $('#exampleModalCenter').modal('hide')
-                
+                Swal.fire(
+                    'Good job!',
+                    'You clicked the button!',
+                    'success'
+                )
+                this.$emit('addAnjing',data)
                 console.log(data)
             })
             .catch(err => {
@@ -198,11 +220,14 @@ export default {
             })
         // alert(JSON.stringify(this.form))
       },
+      
     },
     created(){
         if(localStorage.getItem('token')){
+            
             this.isLogin = true
         }else{
+            
             this.isLogin = false
         }
     }
