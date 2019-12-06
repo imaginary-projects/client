@@ -29,13 +29,12 @@
             </b-collapse>
         </b-navbar>
 
-
         <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered"  role="document">
-            <div class="modal-content" style="width:1000px;padding:100px;border-radius:30px">
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="width:1000px;padding:100px;border-radius:30px">
             <div>
-                    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+                    <b-form @submit.prevent="onSubmit" @reset="onReset" v-if="show">
                     <b-form-group
                         id="input-group-1"
                         label="Email address:"
