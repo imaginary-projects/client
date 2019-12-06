@@ -36,6 +36,8 @@
                     <p>{{dog.userId.email}}</p>
                 </b-card-text>
                 <button type="submit" class="btn btn-primary" @click="backToPage" style="margin-top:50px">Back</button>
+                <!-- <button :href=tweetUrl type="submit" class="btn btn-primary" style="margin-top:50px">Tweet</button> -->
+                <a :href=tweetUrl class="btn btn-primary" style="margin-top:50px">Tweet</a>
             </b-card-body>
             </b-col>
         </b-row>
@@ -48,16 +50,30 @@
 export default {
     data(){
         return {
-            
+            name: '',
+            tweetUrl: '',
+            picUrl: '',
+            dogName : '',
+            dogUrl : ''
         }
     },
+    props : ['dog'],
     methods : {
         backToPage(){
             console.log('button triggered')
             this.$emit('detail-page',false)
-        }
+        },
+        generateUrl() {
+            console.log(this.dog)
+            // console.log('dari twit button')
+            // console.log(dog.image_url)
+            this.tweetUrl = `https://twitter.com/intent/tweet?text=Buruan%20beli%20${this.dog.name}%20click%20linknya%20sekarang!&url=${this.dog.image_url}`
+      },
     },
-    props : ['dog']
+    mounted(){
+        this.generateUrl()
+    },
+    
 }
 </script>
 

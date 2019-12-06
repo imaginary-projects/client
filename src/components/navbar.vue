@@ -9,8 +9,6 @@
             <b-collapse id="nav-collapse" is-nav >
             <b-navbar-nav>
                 <!-- <b-nav-item style="color: rgba(2, 2, 2, 0.5);" href="#">Link</b-nav-item> -->
-                <a style="color:grey;font-size:26px; margin-right:50px" class="navbar-brand" href="#">Home</a>
-                <a style="color:grey;font-size:26px" class="navbar-brand" href="#">Favorites</a>
 
             </b-navbar-nav>
 
@@ -136,8 +134,8 @@ export default {
                 this.isLogin = true
                 localStorage.setItem('token', data.access_token)
                 Swal.fire(
-                    'Good job!',
-                    'You clicked the button!',
+                    'Register Success!',
+                    'Bring home your favorite one!',
                     'success'
                 )
             })
@@ -146,7 +144,7 @@ export default {
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Something went wrong!',
-                    footer: '<a href>Why do I have this issue?</a>'
+
                 })
              
                 console.log(response)
@@ -167,8 +165,8 @@ export default {
                 localStorage.setItem('token', data.access_token)
                 console.log(data)
                 Swal.fire(
-                    'Good job!',
-                    'You clicked the button!',
+                    'Register Success!',
+                    'Bring home your favorite one!',
                     'success'
                 )
             })
@@ -183,6 +181,11 @@ export default {
             })
         },
         logout(){
+            Swal.fire(
+                    'Good bye!',
+                    'Bring us more money, next time!',
+                    'success'
+                )
             localStorage.removeItem('token')
             this.isLogin = false
 
@@ -208,8 +211,8 @@ export default {
             .then(({data}) => {
                 $('#exampleModalCenter').modal('hide')
                 Swal.fire(
-                    'Good job!',
-                    'You clicked the button!',
+                    'Thank you!',
+                    'Buy more, make us rich!',
                     'success'
                 )
                 this.$emit('addAnjing',data)

@@ -13702,8 +13702,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
 var _default = {
   data: function data() {
     return {
@@ -13745,15 +13743,14 @@ var _default = {
         _this.isLogin = true;
         localStorage.setItem('token', data.access_token);
 
-        _sweetalert.default.fire('Good job!', 'You clicked the button!', 'success');
+        _sweetalert.default.fire('Register Success!', 'Bring home your favorite one!', 'success');
       }).catch(function (_ref2) {
         var response = _ref2.response;
 
         _sweetalert.default.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Something went wrong!',
-          footer: '<a href>Why do I have this issue?</a>'
+          text: 'Something went wrong!'
         });
 
         console.log(response);
@@ -13776,7 +13773,7 @@ var _default = {
         localStorage.setItem('token', data.access_token);
         console.log(data);
 
-        _sweetalert.default.fire('Good job!', 'You clicked the button!', 'success');
+        _sweetalert.default.fire('Register Success!', 'Bring home your favorite one!', 'success');
       }).catch(function (_ref4) {
         var response = _ref4.response;
 
@@ -13791,6 +13788,8 @@ var _default = {
       });
     },
     logout: function logout() {
+      _sweetalert.default.fire('Good bye!', 'Bring us more money, next time!', 'success');
+
       localStorage.removeItem('token');
       this.isLogin = false;
     },
@@ -13816,7 +13815,7 @@ var _default = {
         var data = _ref5.data;
         $('#exampleModalCenter').modal('hide');
 
-        _sweetalert.default.fire('Good job!', 'You clicked the button!', 'success');
+        _sweetalert.default.fire('Thank you!', 'Buy more, make us rich!', 'success');
 
         _this3.$emit('addAnjing', data);
 
@@ -13872,31 +13871,7 @@ exports.default = _default;
             "b-collapse",
             { attrs: { id: "nav-collapse", "is-nav": "" } },
             [
-              _c("b-navbar-nav", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "navbar-brand",
-                    staticStyle: {
-                      color: "grey",
-                      "font-size": "26px",
-                      "margin-right": "50px"
-                    },
-                    attrs: { href: "#" }
-                  },
-                  [_vm._v("Home")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "navbar-brand",
-                    staticStyle: { color: "grey", "font-size": "26px" },
-                    attrs: { href: "#" }
-                  },
-                  [_vm._v("Favorites")]
-                )
-              ]),
+              _c("b-navbar-nav"),
               _vm._v(" "),
               _c(
                 "b-navbar-nav",
@@ -14435,80 +14410,94 @@ exports.default = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
+var _sweetalert = _interopRequireDefault(require("sweetalert2"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var _default = {
   data: function data() {
-    return {
+    var _ref;
+
+    return _ref = {
+      minPrice: '',
+      maxPrice: '',
+      sex: '',
       input: '',
       searchBtn: '',
       dogList: [],
       isDetail: true
-    };
+    }, _defineProperty(_ref, "input", ''), _defineProperty(_ref, "pageNumber", 0), _defineProperty(_ref, "size", 6), _defineProperty(_ref, "currents", []), _ref;
   },
   methods: {
+    deleteAnjing: function deleteAnjing(id) {
+      var _this = this;
+
+      _sweetalert.default.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          (0, _axios.default)({
+            method: 'delete',
+            url: "http://localhost:3000/anjing/".concat(id),
+            headers: {
+              token: localStorage.getItem('token')
+            }
+          }).then(function (_ref2) {
+            var data = _ref2.data;
+            console.log(data);
+
+            _this.fetchData();
+
+            _sweetalert.default.fire('Deleted!', 'Delete success', 'success');
+          }).catch(function (_ref3) {
+            var response = _ref3.response;
+
+            _sweetalert.default.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'You are not the owner of the dog!'
+            });
+
+            console.log(response);
+          });
+
+          _sweetalert.default.fire('Deleted!', 'Your dog removed from our page!', 'success');
+        }
+      });
+
+      console.log(id);
+    },
+    showFilterred: function showFilterred() {
+      var _this2 = this;
+
+      console.log('filter triggereddddd');
+      (0, _axios.default)({
+        method: 'post',
+        url: 'http://localhost:3000/anjing/filter',
+        data: {
+          minPrice: this.minPrice,
+          maxPrice: this.maxPrice,
+          sex: this.sex
+        }
+      }).then(function (_ref4) {
+        var data = _ref4.data;
+        console.log(data, 'dataa from anjing');
+        console.log(_this2.pageNumber);
+        _this2.dogList = data;
+        _this2.pageNumber = 0;
+
+        _this2.currentAnjing();
+      }).catch(function (err) {// console.log(err)
+      });
+    },
     showDetail: function showDetail(dog) {
       this.$emit('show-detail', dog);
       this.$emit('detail-page', true);
@@ -14518,16 +14507,35 @@ var _default = {
       searchBtn.classList.toggle("close");
       input.classList.toggle("square");
     },
+    nextPage: function nextPage() {
+      this.pageNumber++;
+      this.currentAnjing();
+    },
+    currentAnjing: function currentAnjing() {
+      // console.log('tajhdfnjkanflajsdbnfjlanfjlansdlf')
+      var start = this.pageNumber * this.size;
+      var end = start + this.size;
+      console.log(this.dogList); // console.log(this.dogList,'-------------------')
+      // console.log(this.dogList.slice(start, end))
+
+      this.currents = this.dogList.slice(start, end);
+    },
+    prevPage: function prevPage() {
+      this.pageNumber--;
+      this.currentAnjing();
+    },
     fetchData: function fetchData() {
-      var _this = this;
+      var _this3 = this;
 
       (0, _axios.default)({
         method: 'get',
         url: 'http://localhost:3000/anjing'
-      }).then(function (_ref) {
-        var data = _ref.data;
+      }).then(function (_ref5) {
+        var data = _ref5.data;
         console.log(data);
-        _this.dogList = data;
+        _this3.dogList = data;
+
+        _this3.currentAnjing();
       }).catch(function (err) {
         console.log(err);
       });
@@ -14535,12 +14543,12 @@ var _default = {
   },
   props: ['newAnjing'],
   created: function created() {
-    console.log(this.newAnjing);
     this.fetchData();
   },
   watch: {
     newAnjing: function newAnjing(value) {
       this.dogList.unshift(value);
+      this.currentAnjing();
     }
   }
 };
@@ -14576,7 +14584,7 @@ exports.default = _default;
           {
             staticClass: "form-row",
             staticStyle: {
-              "padding-left": "20%",
+              "padding-left": "34%",
               "padding-right": "15%",
               height: "300px",
               display: "flex",
@@ -14591,12 +14599,29 @@ exports.default = _default;
               ]),
               _vm._v(" "),
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.minPrice,
+                    expression: "minPrice"
+                  }
+                ],
                 staticClass: "form-control",
                 attrs: {
                   type: "text",
                   id: "validationTooltip01",
                   placeholder: "1000",
                   required: ""
+                },
+                domProps: { value: _vm.minPrice },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.minPrice = $event.target.value
+                  }
                 }
               }),
               _vm._v(" "),
@@ -14611,12 +14636,29 @@ exports.default = _default;
               ]),
               _vm._v(" "),
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.maxPrice,
+                    expression: "maxPrice"
+                  }
+                ],
                 staticClass: "form-control",
                 attrs: {
                   type: "text",
                   id: "validationTooltip02",
                   placeholder: "1.000.000",
                   required: ""
+                },
+                domProps: { value: _vm.maxPrice },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.maxPrice = $event.target.value
+                  }
                 }
               }),
               _vm._v(" "),
@@ -14626,11 +14668,37 @@ exports.default = _default;
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group col-md-3" }, [
-              _c("label", { attrs: { for: "inputState" } }, [_vm._v("Sex")]),
+              _c("label", { attrs: { for: "inputState" } }, [_vm._v("Gender")]),
               _vm._v(" "),
               _c(
                 "select",
-                { staticClass: "form-control", attrs: { id: "inputState" } },
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.sex,
+                      expression: "sex"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "inputState" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.sex = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
                 [
                   _c("option", { attrs: { selected: "" } }, [
                     _vm._v("Choose...")
@@ -14643,26 +14711,6 @@ exports.default = _default;
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-3 mb-3" }, [
-              _c("label", { attrs: { for: "validationTooltip01" } }, [
-                _vm._v("Specific category")
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "validationTooltip01",
-                  placeholder: "Bulldog",
-                  required: ""
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "valid-tooltip" }, [
-                _vm._v("\n              Looks good!\n            ")
-              ])
-            ]),
-            _vm._v(" "),
             _c(
               "button",
               {
@@ -14672,11 +14720,41 @@ exports.default = _default;
                   width: "100px",
                   "margin-left": "30px"
                 },
-                attrs: { type: "submit" }
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.showFilterred($event)
+                  }
+                }
               },
               [_vm._v("Submit")]
             )
           ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticStyle: { "margin-bottom": "100px" } }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success",
+            staticStyle: { float: "right", "margin-left": "5px" },
+            attrs: { type: "button" },
+            on: { click: _vm.nextPage }
+          },
+          [_vm._v("Next")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success",
+            staticStyle: { float: "right" },
+            attrs: { type: "button" },
+            on: { click: _vm.prevPage }
+          },
+          [_vm._v("Previous")]
         )
       ]),
       _vm._v(" "),
@@ -14691,7 +14769,7 @@ exports.default = _default;
             "flex-wrap": "wrap"
           }
         },
-        _vm._l(_vm.dogList, function(dog, i) {
+        _vm._l(_vm.currents, function(dog, i) {
           return _c(
             "div",
             {
@@ -14739,7 +14817,13 @@ exports.default = _default;
                     "button",
                     {
                       staticClass: "btn btn-warning",
-                      attrs: { type: "submit" }
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.deleteAnjing(dog._id)
+                        }
+                      }
                     },
                     [
                       _c("i", {
@@ -14795,7 +14879,7 @@ render._withStripped = true
       
       }
     })();
-},{"axios":"node_modules/axios/index.js","_css_loader":"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/detailContent.vue":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js","sweetalert2":"node_modules/sweetalert2/dist/sweetalert2.all.js","_css_loader":"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/detailContent.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -14847,17 +14931,34 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   data: function data() {
-    return {};
+    return {
+      name: '',
+      tweetUrl: '',
+      picUrl: '',
+      dogName: '',
+      dogUrl: ''
+    };
   },
+  props: ['dog'],
   methods: {
     backToPage: function backToPage() {
       console.log('button triggered');
       this.$emit('detail-page', false);
+    },
+    generateUrl: function generateUrl() {
+      console.log(this.dog); // console.log('dari twit button')
+      // console.log(dog.image_url)
+
+      this.tweetUrl = "https://twitter.com/intent/tweet?text=Buruan%20beli%20".concat(this.dog.name, "%20click%20linknya%20sekarang!&url=").concat(this.dog.image_url);
     }
   },
-  props: ['dog']
+  mounted: function mounted() {
+    this.generateUrl();
+  }
 };
 exports.default = _default;
         var $20b36a = exports.default || module.exports;
@@ -15044,6 +15145,16 @@ exports.default = _default;
                           on: { click: _vm.backToPage }
                         },
                         [_vm._v("Back")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary",
+                          staticStyle: { "margin-top": "50px" },
+                          attrs: { href: _vm.tweetUrl }
+                        },
+                        [_vm._v("Tweet")]
                       )
                     ],
                     1
@@ -51124,7 +51235,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58424" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56789" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
