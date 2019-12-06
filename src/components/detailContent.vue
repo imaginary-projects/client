@@ -17,7 +17,7 @@
                 <br>
                  <b-card-text style="display:flex; flex-direction:row">
                     <i style="font-size:24px;margin-right:20px;" class="fas fa-paw"></i>
-                    <p>Pokoknya Anjing</p>
+                    <p>{{nama}}Pokoknya Anjing</p>
                 </b-card-text>
                 <b-card-text style="display:flex; flex-direction:row">
                     <i style="font-size:24px;margin-right:20px;" class="far fa-calendar-alt"></i>
@@ -40,6 +40,7 @@
                     <p>081952801122</p>
                 </b-card-text>
                 <button type="submit" class="btn btn-primary" style="margin-top:50px">Back</button>
+                <a :href=tweetUrl class="btn btn-primary">Tweet</a>
             </b-card-body>
             </b-col>
         </b-row>
@@ -49,7 +50,21 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+        name: '',
+        tweetUrl: '',
+        picUrl: ''
+    };
+  },
+  methods: {
+    generateUrl() {
+        this.tweetUrl = `https://twitter.com/intent/tweet?text=${this.name}&url=${this.picUrl}`
+      },
+  },
+  created(){
+    this.generateUrl()
+  }
 }
 </script>
 

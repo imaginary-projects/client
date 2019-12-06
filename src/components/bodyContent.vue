@@ -43,11 +43,22 @@
        
 
         <div class="dogs" style="display:flex;flex-basis: 30%;width:80vw;flex-wrap: wrap;">
+            <div class="card" style="width: 30%;margin:20px">
+            <div class="images" style="height:300px;width:auto;background-image: url('https://www.rd.com/wp-content/uploads/2017/02/16-result-5-Which-Adorable-Puppy-Are-You-521697453-Bigandt_Photography-800x450.jpg'); background-size:cover">
+            </div>
+            <div class="card-body" style="padding:40px;">
+              <h4 class="card-title">{{nama}}</h4>
+              <p class="card-text">{{description}}</p>
+              <a href="#" class="btn btn-primary">Details</a>
+              <button type="submit" class="btn btn-primary"><i style="font-size:18px;margin-right:10px" class="fas fa-paw"></i>Favorite</button>
+            </div>
+          </div>
+
 
           <div class="card" style="width: 30%;margin:20px">
-            <div class="images" style="height:300px;width:auto;background-image: url('https://howlidayinnpetresort.com/wp-content/uploads/2019/01/about.png'); background-size:cover">
-            <img src="../../dist/bookmark.png" style="height:90px;position:absolute;top:-20px;left:360px" alt="">
-            </div>
+            <div class="images" style="height:300px;width:auto;background-image: url('https://www.rd.com/wp-content/uploads/2017/02/16-result-5-Which-Adorable-Puppy-Are-You-521697453-Bigandt_Photography-800x450.jpg'); background-size:cover">
+<!--             <img src="../../dist/bookmark.png" style="height:90px;position:absolute;top:-20px;left:360px" alt="">
+ -->            </div>
             <div class="card-body" style="padding:40px;">
               <h4 class="card-title">Annice The Cute Dog</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -56,7 +67,7 @@
             </div>
           </div>
 
-          <div class="card" style="width: 30%;margin:20px">
+          <!-- <div class="card" style="width: 30%;margin:20px">
             <div class="images" style="height:300px;width:auto;background-image: url('https://www.rd.com/wp-content/uploads/2017/02/16-result-5-Which-Adorable-Puppy-Are-You-521697453-Bigandt_Photography-800x450.jpg'); background-size:cover">
             <img src="../../dist/bookmark.png" style="height:90px;position:absolute;top:-20px;left:360px" alt="">
             </div>
@@ -78,7 +89,7 @@
               <a href="#" class="btn btn-primary">details</a>
               <button type="submit" class="btn btn-primary"><i style="font-size:18px;margin-right:10px" class="fas fa-paw"></i>Favorite</button>
             </div>
-          </div>
+          </div> -->
 
           
 
@@ -117,11 +128,13 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
    data() {
     return {
       input : '',
-      searchBtn : ''
+      searchBtn : '',
+      dogList: []
     }
   },
 
@@ -129,7 +142,23 @@ export default {
     expand(){
         searchBtn.classList.toggle("close");
         input.classList.toggle("square");
+    },
+    fetchData(){
+      axios({
+        method:'get',
+        url: 'http://localhost:3000/anjing'
+      })
+        .then((data) => {
+          dogList = data
+          console.log(data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
+  },
+  created(){
+    this.fetchData()
   }
 
 
