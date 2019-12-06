@@ -79,39 +79,8 @@
               <button type="submit" class="btn btn-primary"><i style="font-size:18px;margin-right:10px" class="fas fa-paw"></i>Favorite</button>
             </div>
           </div>
-
-          
-
-          
-
-           
-
         </div>
 
-
-        <!-- <div class="card" style="width: 100%;">
-          <div class="images" style="height:300px;width:auto;background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRFeGl-Nrqsd-HHLUaUyBaAQnogvf3tB3-OdT84eVDHTvhETP6&s'); background-size:cover">
-          
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-
-        <div class="card" style="width: 100%;">
-          <div class="images" style="height:300px;width:auto;background-image: url('https://cdn.shopify.com/s/files/1/0812/3573/files/DogTraining_Website_Yellow_Dog.png?8767'); background-size:cover">
-          
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div> -->
-
-        
 
   </b-card-group>
 </template>
