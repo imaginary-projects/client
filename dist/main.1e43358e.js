@@ -9035,14 +9035,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $eda0a2 = exports.default || module.exports;
+        var $e9b53c = exports.default || module.exports;
       
-      if (typeof $eda0a2 === 'function') {
-        $eda0a2 = $eda0a2.options;
+      if (typeof $e9b53c === 'function') {
+        $e9b53c = $e9b53c.options;
       }
     
         /* template */
-        Object.assign($eda0a2, (function () {
+        Object.assign($e9b53c, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -9149,7 +9149,7 @@ exports.default = _default;
                         {
                           staticClass: "btn btn-primary",
                           attrs: {
-                            type: "submit",
+                            type: "button",
                             "data-toggle": "modal",
                             "data-target": "#exampleModalCenter"
                           }
@@ -9439,9 +9439,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$eda0a2', $eda0a2);
+            api.createRecord('$e9b53c', $e9b53c);
           } else {
-            api.reload('$eda0a2', $eda0a2);
+            api.reload('$e9b53c', $e9b53c);
           }
         }
 
@@ -9452,7 +9452,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","./../../dist/doggylovers.jpg":[["doggylovers.19f276e2.jpg","dist/doggylovers.jpg"],"dist/doggylovers.jpg"],"vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/bodyContent.vue":[function(require,module,exports) {
+},{"_css_loader":"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","./../../dist/doggylovers.jpg":[["doggylovers.19f276e2.jpg","dist/doggylovers.jpg"],"dist/doggylovers.jpg"],"vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/itemAnjing.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9471,34 +9471,104 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var _default = {
+  data: function data() {
+    return {};
+  },
+  props: ['anjing'],
+  methods: {}
+};
+exports.default = _default;
+        var $3b49ea = exports.default || module.exports;
+      
+      if (typeof $3b49ea === 'function') {
+        $3b49ea = $3b49ea.options;
+      }
+    
+        /* template */
+        Object.assign($3b49ea, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "card", staticStyle: { width: "30%", margin: "20px" } },
+    [
+      _c("div", {
+        staticClass: "images",
+        staticStyle: {
+          height: "300px",
+          width: "auto",
+          "background-image":
+            "url('https://howlidayinnpetresort.com/wp-content/uploads/2019/01/about.png')",
+          "background-size": "cover"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "card-body", staticStyle: { padding: "40px" } },
+        [
+          _c("h4", { staticClass: "card-title" }, [
+            _vm._v(_vm._s(_vm.anjing.title))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "card-text" }, [
+            _vm._v(
+              "Some quick example text to build on the card title and make up the bulk of the card's content."
+            )
+          ]),
+          _vm._v(" "),
+          _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
+            _vm._v("details")
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$3b49ea', $3b49ea);
+          } else {
+            api.reload('$3b49ea', $3b49ea);
+          }
+        }
+
+        
+      }
+    })();
+},{"_css_loader":"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/bodyContent.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _itemAnjing = _interopRequireDefault(require("./itemAnjing"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 //
 //
 //
@@ -9578,28 +9648,82 @@ exports.default = void 0;
 //
 //
 var _default = {
+  components: {
+    itemAnjing: _itemAnjing.default
+  },
   data: function data() {
     return {
       input: '',
-      searchBtn: ''
+      searchBtn: '',
+      pageNumber: 0,
+      size: 6,
+      currents: [],
+      anjing: [{
+        title: 'ini anjing'
+      }, {
+        title: 'ini juga anjing'
+      }, {
+        title: 'ini kayanya anjing'
+      }, {
+        title: 'ini anjing'
+      }, {
+        title: 'ini juga anjing'
+      }, {
+        title: 'ini kayanya anjing'
+      }, {
+        title: 'ini anjing'
+      }, {
+        title: 'ini juga anjing'
+      }, {
+        title: 'ini kayanya anjing'
+      }, {
+        title: 'ini anjing'
+      }, {
+        title: 'ini juga anjing'
+      }, {
+        title: 'ini kayanya anjing'
+      }, {
+        title: 'ini anjing'
+      }, {
+        title: 'ini juga anjing'
+      }, {
+        title: 'ini kayanya anjing'
+      }]
     };
   },
   methods: {
     expand: function expand() {
       searchBtn.classList.toggle("close");
       input.classList.toggle("square");
+    },
+    nextPage: function nextPage() {
+      this.pageNumber++;
+      this.currentAnjing();
+    },
+    currentAnjing: function currentAnjing() {
+      var start = this.pageNumber * this.size;
+      var end = start + this.size;
+      console.log(this.anjing.slice(start, end));
+      this.currents = this.anjing.slice(start, end);
+    },
+    prevPage: function prevPage() {
+      this.pageNumber--;
+      this.currentAnjing();
     }
+  },
+  created: function created() {
+    this.currentAnjing();
   }
 };
 exports.default = _default;
-        var $a159ee = exports.default || module.exports;
+        var $feb226 = exports.default || module.exports;
       
-      if (typeof $a159ee === 'function') {
-        $a159ee = $a159ee.options;
+      if (typeof $feb226 === 'function') {
+        $feb226 = $feb226.options;
       }
     
         /* template */
-        Object.assign($a159ee, (function () {
+        Object.assign($feb226, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -9727,6 +9851,31 @@ exports.default = _default;
         )
       ]),
       _vm._v(" "),
+      _c("div", { staticClass: "col-12" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success",
+            staticStyle: { float: "right", "margin-left": "5px" },
+            attrs: { type: "button" },
+            on: { click: _vm.nextPage }
+          },
+          [_vm._v("Next")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success",
+            staticStyle: { float: "right" },
+            attrs: { type: "button" },
+            on: { click: _vm.prevPage }
+          },
+          [_vm._v("Previous")]
+        ),
+        _vm._v("\n           \n        ")
+      ]),
+      _vm._v(" "),
       _c(
         "div",
         {
@@ -9738,221 +9887,10 @@ exports.default = _default;
             "flex-wrap": "wrap"
           }
         },
-        [
-          _c(
-            "div",
-            {
-              staticClass: "card",
-              staticStyle: { width: "30%", margin: "20px" }
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "images",
-                  staticStyle: {
-                    height: "300px",
-                    width: "auto",
-                    "background-image":
-                      "url('https://howlidayinnpetresort.com/wp-content/uploads/2019/01/about.png')",
-                    "background-size": "cover"
-                  }
-                },
-                [
-                  _c("img", {
-                    staticStyle: {
-                      height: "90px",
-                      position: "absolute",
-                      top: "-20px",
-                      left: "360px"
-                    },
-                    attrs: {
-                      src: "/bookmark.06364b87.png",
-                      alt: ""
-                    }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "card-body", staticStyle: { padding: "40px" } },
-                [
-                  _c("h4", { staticClass: "card-title" }, [
-                    _vm._v("Annice The Cute Dog")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(
-                      "Some quick example text to build on the card title and make up the bulk of the card's content."
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                    [_vm._v("details")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "submit" }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-paw",
-                        staticStyle: {
-                          "font-size": "18px",
-                          "margin-right": "10px"
-                        }
-                      }),
-                      _vm._v("Favorite")
-                    ]
-                  )
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "card",
-              staticStyle: { width: "30%", margin: "20px" }
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "images",
-                  staticStyle: {
-                    height: "300px",
-                    width: "auto",
-                    "background-image":
-                      "url('https://www.rd.com/wp-content/uploads/2017/02/16-result-5-Which-Adorable-Puppy-Are-You-521697453-Bigandt_Photography-800x450.jpg')",
-                    "background-size": "cover"
-                  }
-                },
-                [
-                  _c("img", {
-                    staticStyle: {
-                      height: "90px",
-                      position: "absolute",
-                      top: "-20px",
-                      left: "360px"
-                    },
-                    attrs: {
-                      src: "/bookmark.06364b87.png",
-                      alt: ""
-                    }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "card-body", staticStyle: { padding: "40px" } },
-                [
-                  _c("h4", { staticClass: "card-title" }, [
-                    _vm._v("Annice The Cute Dog")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(
-                      "Some quick example text to build on the card title and make up the bulk of the card's content."
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                    [_vm._v("details")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "submit" }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-paw",
-                        staticStyle: {
-                          "font-size": "18px",
-                          "margin-right": "10px"
-                        }
-                      }),
-                      _vm._v("Favorite")
-                    ]
-                  )
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "card",
-              staticStyle: { width: "30%", margin: "20px" }
-            },
-            [
-              _c("div", {
-                staticClass: "images",
-                staticStyle: {
-                  height: "300px",
-                  width: "auto",
-                  "background-image":
-                    "url('https://cdn.pixabay.com/photo/2016/11/16/00/19/golden-retriever-1827899_960_720.jpg')",
-                  "background-size": "cover"
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "card-body", staticStyle: { padding: "40px" } },
-                [
-                  _c("h4", { staticClass: "card-title" }, [
-                    _vm._v("Annice The Cute Dog")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(
-                      "Some quick example text to build on the card title and make up the bulk of the card's content."
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                    [_vm._v("details")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "submit" }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-paw",
-                        staticStyle: {
-                          "font-size": "18px",
-                          "margin-right": "10px"
-                        }
-                      }),
-                      _vm._v("Favorite")
-                    ]
-                  )
-                ]
-              )
-            ]
-          )
-        ]
+        _vm._l(_vm.currents, function(anjing, id) {
+          return _c("itemAnjing", { key: id, attrs: { anjing: anjing } })
+        }),
+        1
       )
     ]
   )
@@ -9977,9 +9915,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$a159ee', $a159ee);
+            api.createRecord('$feb226', $feb226);
           } else {
-            api.reload('$a159ee', $a159ee);
+            api.reload('$feb226', $feb226);
           }
         }
 
@@ -9990,7 +9928,7 @@ render._withStripped = true
       
       }
     })();
-},{"./../../dist/bookmark.png":[["bookmark.06364b87.png","dist/bookmark.png"],"dist/bookmark.png"],"_css_loader":"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/detailContent.vue":[function(require,module,exports) {
+},{"./itemAnjing":"src/components/itemAnjing.vue","_css_loader":"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/detailContent.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10048,14 +9986,14 @@ exports.default = void 0;
 //
 var _default = {};
 exports.default = _default;
-        var $20b36a = exports.default || module.exports;
+        var $487845 = exports.default || module.exports;
       
-      if (typeof $20b36a === 'function') {
-        $20b36a = $20b36a.options;
+      if (typeof $487845 === 'function') {
+        $487845 = $487845.options;
       }
     
         /* template */
-        Object.assign($20b36a, (function () {
+        Object.assign($487845, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -10290,9 +10228,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$20b36a', $20b36a);
+            api.createRecord('$487845', $487845);
           } else {
-            api.reload('$20b36a', $20b36a);
+            api.reload('$487845', $487845);
           }
         }
 
@@ -10336,14 +10274,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $03651d = exports.default || module.exports;
+        var $9f6858 = exports.default || module.exports;
       
-      if (typeof $03651d === 'function') {
-        $03651d = $03651d.options;
+      if (typeof $9f6858 === 'function') {
+        $9f6858 = $9f6858.options;
       }
     
         /* template */
-        Object.assign($03651d, (function () {
+        Object.assign($9f6858, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -10381,9 +10319,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$03651d', $03651d);
+            api.createRecord('$9f6858', $9f6858);
           } else {
-            api.reload('$03651d', $03651d);
+            api.reload('$9f6858', $9f6858);
           }
         }
 
@@ -10431,14 +10369,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $1f748e = exports.default || module.exports;
+        var $7151af = exports.default || module.exports;
       
-      if (typeof $1f748e === 'function') {
-        $1f748e = $1f748e.options;
+      if (typeof $7151af === 'function') {
+        $7151af = $7151af.options;
       }
     
         /* template */
-        Object.assign($1f748e, (function () {
+        Object.assign($7151af, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -10452,7 +10390,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-1f748e",
+            _scopeId: "data-v-7151af",
             functional: undefined
           };
         })());
@@ -10465,9 +10403,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$1f748e', $1f748e);
+            api.createRecord('$7151af', $7151af);
           } else {
-            api.reload('$1f748e', $1f748e);
+            api.reload('$7151af', $7151af);
           }
         }
 
@@ -46503,7 +46441,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58780" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34057" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

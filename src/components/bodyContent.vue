@@ -1,7 +1,5 @@
 <template>
   <b-card-group columns style="margin-left:10%; margin-right:10%;display:flex;flex-direction:column;align-items:center">
-
-       
           <form style="width:99vw;margin-bottom:150px">
           <div class="form-row" style="padding-left:20%;padding-right:15%;height:300px;display:flex;align-items:center;box-shadow: 27px 46px 57px -8px rgba(0,0,0,0.2);">
             <div class="col-md-2 mb-3">
@@ -39,53 +37,15 @@
 
           </form>
 
-
-       
-
+          <div class="col-12">
+            <button type="button" class="btn btn-success" style="float:right; margin-left:5px;" @click="nextPage">Next</button>
+            <button type="button" class="btn btn-success" style="float:right;" @click="prevPage">Previous</button>
+            &nbsp;
+          </div>
         <div class="dogs" style="display:flex;flex-basis: 30%;width:80vw;flex-wrap: wrap;">
 
-          <div class="card" style="width: 30%;margin:20px">
-            <div class="images" style="height:300px;width:auto;background-image: url('https://howlidayinnpetresort.com/wp-content/uploads/2019/01/about.png'); background-size:cover">
-            <img src="../../dist/bookmark.png" style="height:90px;position:absolute;top:-20px;left:360px" alt="">
-            </div>
-            <div class="card-body" style="padding:40px;">
-              <h4 class="card-title">Annice The Cute Dog</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">details</a>
-              <button type="submit" class="btn btn-primary"><i style="font-size:18px;margin-right:10px" class="fas fa-paw"></i>Favorite</button>
-            </div>
-          </div>
-
-          <div class="card" style="width: 30%;margin:20px">
-            <div class="images" style="height:300px;width:auto;background-image: url('https://www.rd.com/wp-content/uploads/2017/02/16-result-5-Which-Adorable-Puppy-Are-You-521697453-Bigandt_Photography-800x450.jpg'); background-size:cover">
-            <img src="../../dist/bookmark.png" style="height:90px;position:absolute;top:-20px;left:360px" alt="">
-            </div>
-            <div class="card-body" style="padding:40px;">
-              <h4 class="card-title">Annice The Cute Dog</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">details</a>
-              <button type="submit" class="btn btn-primary"><i style="font-size:18px;margin-right:10px" class="fas fa-paw"></i>Favorite</button>
-            </div>
-          </div>
-
-          <div class="card" style="width: 30%;margin:20px">
-            <div class="images" style="height:300px;width:auto;background-image: url('https://cdn.pixabay.com/photo/2016/11/16/00/19/golden-retriever-1827899_960_720.jpg'); background-size:cover">
-            
-            </div>
-            <div class="card-body" style="padding:40px;">
-              <h4 class="card-title">Annice The Cute Dog</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">details</a>
-              <button type="submit" class="btn btn-primary"><i style="font-size:18px;margin-right:10px" class="fas fa-paw"></i>Favorite</button>
-            </div>
-          </div>
-
-          
-
-          
-
-           
-
+          <itemAnjing v-for="(anjing,id) in currents" :key="id" :anjing="anjing"></itemAnjing>
+        
         </div>
 
 
@@ -117,23 +77,107 @@
 </template>
 
 <script>
+import itemAnjing from './itemAnjing'
+import axios from 'axios'
+
 export default {
+  components:{
+    itemAnjing
+  },
    data() {
     return {
       input : '',
-      searchBtn : ''
+      searchBtn : '',
+      pageNumber: 0,
+      size:6,
+      currents : [],
+      anjing : [
+        {
+          title:'ini anjing'
+        },
+        {
+          title:'ini juga anjing'
+        },
+        {
+          title:'ini kayanya anjing'
+        },
+        {
+          title:'ini anjing'
+        },
+        {
+          title:'ini juga anjing'
+        },
+        {
+          title:'ini kayanya anjing'
+        },
+        {
+          title:'ini anjing'
+        },
+        {
+          title:'ini juga anjing'
+        },
+        {
+          title:'ini kayanya anjing'
+        },
+        {
+          title:'ini anjing'
+        },
+        {
+          title:'ini juga anjing'
+        },
+        {
+          title:'ini kayanya anjing'
+        },
+        {
+          title:'ini anjing'
+        },
+        {
+          title:'ini juga anjing'
+        },
+        {
+          title:'ini kayanya anjing'
+        }
+      ]
     }
   },
 
   methods : {
+    fetchAnjing(){
+      axios({
+        url:'http:localhost:3000/anjing',
+        method:'get',
+        headers:{
+          token: localStorage.token
+        }
+      })
+        .then(({data}) => {
+          this.anjing = data
+        })
+        .catch(console.log)
+    },
     expand(){
         searchBtn.classList.toggle("close");
         input.classList.toggle("square");
+    },
+    nextPage(){
+       this.pageNumber++;
+       this.currentAnjing()
+    },
+    currentAnjing(){
+      const start = this.pageNumber * this.size
+      const end = start + this.size;
+      console.log(this.anjing.slice(start, end))
+      this.currents = this.anjing.slice(start, end);
+    },
+    prevPage(){
+      this.pageNumber--;
+      this.currentAnjing()
     }
+  },
+  created(){
+    this.fetchAnjing()
+    this.currentAnjing()
   }
-
-
-
 }
 </script>
 
