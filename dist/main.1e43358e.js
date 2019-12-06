@@ -8998,6 +8998,8 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -9149,20 +9151,23 @@ exports.default = _default;
                         {
                           staticClass: "btn btn-primary",
                           attrs: {
-                            type: "submit",
+                            type: "button",
                             "data-toggle": "modal",
                             "data-target": "#exampleModalCenter"
                           }
                         },
                         [
-                          _c("i", {
-                            staticClass: "fas fa-plus-square",
-                            staticStyle: {
-                              "font-size": "18px",
-                              "margin-right": "10px"
-                            }
-                          }),
-                          _vm._v("Post")
+                          _c(
+                            "i",
+                            {
+                              staticClass: "fas fa-plus-square",
+                              staticStyle: {
+                                "font-size": "18px",
+                                "margin-right": "10px"
+                              }
+                            },
+                            [_vm._v("\n            post\n            ")]
+                          )
                         ]
                       )
                     ],
@@ -47970,7 +47975,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36901" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59537" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
