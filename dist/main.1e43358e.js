@@ -8998,7 +8998,6 @@ exports.default = void 0;
 //
 //
 //
-//
 var _default = {
   data: function data() {
     return {
@@ -9187,7 +9186,7 @@ exports.default = _default;
             id: "exampleModalCenter",
             tabindex: "-1",
             role: "dialog",
-            "aria-labelledby": "exampleModalLabel",
+            "aria-labelledby": "exampleModalCenterTitle",
             "aria-hidden": "true"
           }
         },
@@ -9217,7 +9216,13 @@ exports.default = _default;
                         ? _c(
                             "b-form",
                             {
-                              on: { submit: _vm.onSubmit, reset: _vm.onReset }
+                              on: {
+                                submit: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.onSubmit($event)
+                                },
+                                reset: _vm.onReset
+                              }
                             },
                             [
                               _c(
@@ -46498,7 +46503,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55937" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58780" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
